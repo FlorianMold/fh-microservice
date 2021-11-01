@@ -11,5 +11,8 @@ class User(
     var login: String,
     var firstname: String,
     var lastname: String,
-    @Id @GeneratedValue var id: Long? = null
-)
+    @Id @GeneratedValue var id: Long? = null) {
+    override fun toString(): String {
+        return "User(login='$login', firstname='$firstname', lastname='$lastname', id=$id)"
+    }
+}

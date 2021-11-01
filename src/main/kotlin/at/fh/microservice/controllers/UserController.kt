@@ -35,14 +35,14 @@ class UserController(private val userService: UserService) {
 
     @PostMapping("")
     fun createEmployee(@RequestBody payload: User): User {
-        log.info("POST $baseUrl", payload)
+        log.info("POST $baseUrl {}", payload)
 
         return userService.createUser(payload)
     }
 
     @PutMapping("/{id}")
     fun updateEmployeeById(@PathVariable("id") userId: Long, @RequestBody payload: User): User {
-        log.info("PUT $baseUrl/$userId", payload)
+        log.info("PUT $baseUrl/$userId {}", payload)
 
         return userService.updateUserById(userId, payload) ?: throw ResponseStatusException(
             HttpStatus.NOT_FOUND,

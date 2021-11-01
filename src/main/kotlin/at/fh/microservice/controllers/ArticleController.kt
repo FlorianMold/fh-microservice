@@ -33,14 +33,14 @@ class ArticleController(private val articleService: ArticleService) {
 
     @PostMapping("")
     fun createEmployee(@RequestBody payload: Article): Article {
-        log.info("POST $baseUrl", payload)
+        log.info("POST $baseUrl {}", payload)
 
         return articleService.createArticle(payload)
     }
 
     @PutMapping("/{id}")
     fun updateEmployeeById(@PathVariable("id") articleId: Long, @RequestBody payload: Article): Article {
-        log.info("PUT $baseUrl/$articleId", payload)
+        log.info("PUT $baseUrl/$articleId {}", payload)
 
         return articleService.updateArticleById(articleId, payload) ?: throw ResponseStatusException(
             HttpStatus.NOT_FOUND,

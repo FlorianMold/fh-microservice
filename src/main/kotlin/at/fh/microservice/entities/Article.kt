@@ -13,4 +13,8 @@ class Article(
     var slug: String = title,
     var addedAt: LocalDateTime = LocalDateTime.now(),
     @Id @GeneratedValue var id: Long? = null
-)
+) {
+    override fun toString(): String {
+        return "Article(title='$title', headline='$headline', content='$content', author=$author, slug='$slug', addedAt=$addedAt, id=$id)"
+    }
+}
