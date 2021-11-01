@@ -3,14 +3,17 @@
 MICROSERVICE_VERSION='0.0.1'
 DOCKER_CONTAINER_NAME='microservice'
 
-postgres_flag=''
+postgres_flag='false'
+use_registry_flag='false'
 
 print_usage() {
   cat <<EOF
     init [OPTIONS]
 
     Options:
-      -p    Build a docker image from the current sources
+      -h    Print the usage.
+      -p    Use a postgres database for the microservice.
+      -r    Load the image from a repository and not from the filesystem.
 EOF
 }
 
@@ -18,16 +21,19 @@ EOF
 BASEDIR=$(dirname "$0")
 cd $BASEDIR
 
-while getopts ':p' flag; do
+while getopts ':pr' flag; do
   case "${flag}" in
     p) postgres_flag='true' ;;
+    r) use_registry_flag='true' ;;
     *) print_usage
        exit 1 ;;
   esac
 done
 
 # Load containers
+if [[ $use_registry_flag = 'true' ]]; then
 docker load --input $DOCKER_CONTAINER_NAME:$MICROSERVICE_VERSION.tar
+fi
 
 # Run containers
 if [[ $postgres_flag = 'true' ]]; then

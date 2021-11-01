@@ -9,7 +9,7 @@ echo ""
 WKDIR=`dirname "$0"`
 echo "Working directory:" $WKDIR
 
-DOCKER_IMAGE_NAME='docker.io/fh/microservice:'
+DOCKER_IMAGE_NAME='fh/microservice:'
 DOCKER_MICROSERVICE_VERSION='0.0.1'
 DOCKER_CONTAINER_NAME='microservice'
 
