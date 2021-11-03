@@ -38,7 +38,7 @@ fi
 
 # Load containers
 if [[ $use_registry_flag = 'false' ]]; then
-  echo "Saving docker-image from file-system"
+  echo "Loading docker-image from file-system"
   docker load --input $DOCKER_CONTAINER_NAME:$MICROSERVICE_VERSION.tar
 fi
 
