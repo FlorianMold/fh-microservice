@@ -8,6 +8,14 @@
 ./gradlew bootRun
 ```
 
+## Load the environment variables
+
+First load the environment variables in the current shell to be able to build:
+
+```shell
+. ./build-env.sh
+```
+
 ## Build the docker image
 
 Either run `./docker/build.sh` or `./docker/buildpack.sh` to create a docker image of the microservice.

@@ -7,17 +7,14 @@ echo "--------------"
 echo ""
 
 WKDIR=`dirname "$0"`
-echo "Working directory:" $WKDIR
+echo "Working directory:" $WKDIR"/build.sh"
 
-DOCKER_CONTAINER_NAME='microservice'
-DOCKER_IMAGE_NAME='fh/microservice:'
-DOCKER_MICROSERVICE_VERSION='0.0.1'
 
 # Build the application
 ./gradlew bootJar
 
 # Build docker container
-docker build -t $DOCKER_IMAGE_NAME$DOCKER_MICROSERVICE_VERSION .
+docker build -t $DOCKER_MICROSERVICE_NAME:$MICROSERVICE_VERSION .
 
 # Remove existing container
 docker rm $DOCKER_CONTAINER_NAME

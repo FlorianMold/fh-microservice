@@ -1,7 +1,15 @@
 #!/bin/bash
 
-docker start registry
+echo "------------------------------"
+echo "Pushing to docker-registry"
+echo "------------------------------"
+echo ""
 
-docker tag fh/microservice:0.0.1 localhost:5000/fh/microservice:0.0.1
+echo "Push docker-image:" $DOCKER_MICROSERVICE_NAME:$MICROSERVICE_VERSION "to" $DOCKER_REGISTRY_HOSTNAME:$DOCKER_REGISTRY_DOCKER_PORT
+echo ""
 
-docker push localhost:5000/fh/microservice:0.0.1
+docker start $DOCKER_REGISTRY_CONTAINER_NAME
+
+docker tag $DOCKER_MICROSERVICE_NAME:$MICROSERVICE_VERSION $DOCKER_REGISTRY_HOSTNAME:$DOCKER_REGISTRY_DOCKER_PORT/$DOCKER_MICROSERVICE_NAME:$MICROSERVICE_VERSION
+
+docker push $DOCKER_REGISTRY_HOSTNAME:$DOCKER_REGISTRY_DOCKER_PORT/$DOCKER_MICROSERVICE_NAME:$MICROSERVICE_VERSION

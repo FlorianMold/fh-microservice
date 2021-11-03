@@ -3,7 +3,6 @@ version: '3'
 services:
   microservice:
     image: "${MICROSERVICE_IMAGE_NAME}"
-    container_name: microservice
     restart: always
     ports:
       - "${SPRING_LOCAL_PORT}:${SPRING_DOCKER_PORT}"

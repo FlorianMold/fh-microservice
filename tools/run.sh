@@ -30,9 +30,16 @@ while getopts ':pr' flag; do
   esac
 done
 
+FILE=./.env
+if [ ! -f "$FILE" ]; then
+    echo "ERR: $FILE does not exist, but is needed for running the application"
+    exit 1
+fi
+
 # Load containers
-if [[ $use_registry_flag = 'true' ]]; then
-docker load --input $DOCKER_CONTAINER_NAME:$MICROSERVICE_VERSION.tar
+if [[ $use_registry_flag = 'false' ]]; then
+  echo "Saving docker-image from file-system"
+  docker load --input $DOCKER_CONTAINER_NAME:$MICROSERVICE_VERSION.tar
 fi
 
 # Run containers
